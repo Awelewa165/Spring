@@ -15,8 +15,8 @@ jobs:
       - name: Build Docker Image
         run: |
           echo "Generated image tag is ${{ github.sha }}" && ls
-          docker build -t obike007/spring1:app-${{ github.sha }} -f ./Dockerfile .
-          #docker build -t obike007/vue:webapp-${{ github.sha }} -f ./vue-test-app/Dockerfile ./vue-test-app
+          docker build -t awelewa165/spring1:app-${{ github.sha }} -f ./Dockerfile .
+          #docker build -t awelewa165/vue:webapp-${{ github.sha }} -f ./vue-test-app/Dockerfile ./vue-test-app
           echo "Docker build completed"
 
   push_image_to_registry:
@@ -27,7 +27,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: Push Docker Image to Registry
-        run: docker push obike007/spring1:app-${{ github.sha }}
+        run: docker push awelewa165/spring1:app-${{ github.sha }}
 
   deploy_to_dev:
     runs-on: self-hosted
